@@ -1,0 +1,18 @@
+list @util_db.public.like_a_window_into_an_s3_bucket
+
+SELECT $1, $2, $3, $4
+FROM @util_db.public.like_a_window_into_an_s3_bucket/veg_plant_height.csv
+(FILE_FORMAT => 'COMMASEP_DBLQUOT_ONEHEADROW');
+
+create table VEGETABLE_DETAILS_PLANT_HEIGHT(
+    plant_name text(20),
+    UOM text(1),
+    Low_End_of_Range number(2),
+    High_End_of_Range number(2)
+)
+
+COPY INTO VEGETABLE_DETAILS_PLANT_HEIGHT
+FROM @util_db.public.like_a_window_into_an_s3_bucket/veg_plant_height.csv
+FILE_FORMAT = 'COMMASEP_DBLQUOT_ONEHEADROW';
+
+select util_db.public.greeting('col.oscar.orellana@gmail.com', 'Oscar', '', 'Orellana González');
