@@ -1,0 +1,20 @@
+create database DEMO_DB;
+use database DEMO_DB;
+
+-- User defined functions
+create or replace function sum_mystery_bag_vars(var1 number, var2 number, var3 number)
+    returns number as 'select var1+var2+var3';
+
+set this = -10.5;
+set that = 2;
+set the_other =  1000;
+
+select sum_mystery_bag_vars($this,$that,$the_other)
+
+-- Built-in functions
+set word = 'whY aRE YOU lIkE thiS?';
+select initcap($word);
+
+-- User defined functions
+create or replace function NEUTRALIZE_WHINING(var1 text)
+    returns text as 'select initcap(var1)';
